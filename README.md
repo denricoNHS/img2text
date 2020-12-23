@@ -5,9 +5,7 @@ A command line script to convert images to text
 
 1) Go to the `img2text` directory by using `cd img2text`.
 
-2) Run this line of code, replacing the .jpg file with an image file of your choice, colors with the number of colors you want, width with how wide you
-
-want the ASCII art to be, and the .txt file with whatever you want to name it: `python3 img2text.py image.jpg colors width image.txt`.
+2) Run this line of code, replacing the .jpg file with an image file of your choice, colors with the number of colors you want, width with how wide you want the ASCII art to be, and the .txt file with whatever you want to name it: `python3 img2text.py image.jpg colors width image.txt`.
 
 3) Run `cd img`.
 
