@@ -9,6 +9,7 @@ A command line script to convert images to text
 3) Run cd img.
 
 4) Run cat image.txt, replacing image.txt with whatever you named it in Step 2.
+
 Congratulations! You successfully created an ASCII art image.
 
 ## Options:
