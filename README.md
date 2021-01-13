@@ -6,5 +6,3 @@ A command line script to convert images to text
 
 ## Options:
 **Homework:** Write your description of each of the options here
-
-# Important message for README.md 
