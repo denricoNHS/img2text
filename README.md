@@ -1,5 +1,9 @@
+
 # img2text: Make Your Images Low-res!
 Change!
+# img2text
+A command line script to convert images to text 
+###############################
 ## Usage:
 **Homework:** Write a description for how to use the program here
 
