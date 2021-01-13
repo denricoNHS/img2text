@@ -1,7 +1,7 @@
-# img2text
-A command line script to convert images to text 
+# img2text: Make Your Images Low-res!
 
 ## Usage:
+<<<<<<< HEAD
 1) Go to the img2text directory by using cd img2text.
 
 2) Run this line of code, replacing the .jpg file with an image file of your choice, colors with the number of colors you want, width with how wide you want the ASCII art to be, and the .txt file with whatever you want to name it: python3 img2text.py image.jpg colors width image.txt.
@@ -52,3 +52,9 @@ img/surprised_pikachu.txt
 Last but not least 
 img/surprised_pikachu.txt is where the result  be send to, so it will be send to the img directory, where the file will be called
 surprised_pikachu.txt. If you want to rename that file you can do something like this img/"what ever file name you want" 
+=======
+**Homework:** Write a description for how to use the program here
+
+## Options:
+**Homework:** Write your description of each of the options here
+>>>>>>> 397475bc1afb5c58b55a005bb33838165c53c886
