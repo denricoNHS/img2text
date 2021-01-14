@@ -22,18 +22,11 @@ processed_img = img_bw_quantized.resize((output_width, int(scaling_factor * orig
 img_array = np.array(processed_img)
 
 gradient = " .:-=+*#%@"
+usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, ncolors)]
 
-with open(output_file, "w") as f:
-    for row in img_array:
-        output = ""
-        for value in row:
-           if value == 0:
-            output += gradient[0]
-           elif value == (ncolors -1):
-            output += gradient[9]
-           else:
-            output += gradient[(value *  int(round(10/(ncolors-1))))]
-        f.write(output + "\n")
-
-
+for row in img_array:
+    ascii = ""
+    for value in row:
+        ascii += gradient[usable_gradient[value]]
+    print(ascii)
 
