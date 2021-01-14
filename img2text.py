@@ -1,3 +1,5 @@
+
+
 import sys
 import numpy as np
 from PIL import Image
@@ -22,13 +24,12 @@ processed_img = img_bw_quantized.resize((output_width, int(scaling_factor * orig
 img_array = np.array(processed_img)
 
 gradient = " .:-=+*#%@"
+usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, ncolors)]
 
 with open(output_file, "w") as f:
-    for row in img_array:
-        output = ""
-        for value in row:
-            output += gradient[value]
-        f.write(output + "\n")
-
-
+  for row in img_array:
+      ascii = ""
+      for value in row:
+          ascii += gradient[usable_gradient[value]]
+      f.write(ascii + "\n")
 
