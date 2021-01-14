@@ -27,7 +27,12 @@ with open(output_file, "w") as f:
     for row in img_array:
         output = ""
         for value in row:
-            output += gradient[value]
+          if value == 0:
+            output += gradient[0]
+          elif value == (ncolors -1):
+            output += gradient[9]
+          else:
+            output += gradient[(value *  int(round(10/(ncolors-1))))]
         f.write(output + "\n")
 
 
