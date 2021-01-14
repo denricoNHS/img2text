@@ -23,12 +23,12 @@ img_array = np.array(processed_img)
 
 gradient = " .:-=+*#%@"
 
-with open(output_file, "w") as f:
-    for row in img_array:
-        output = ""
-        for value in row:
-            output += gradient[value]
-        f.write(output + "\n")
+usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, ncolors)]
+for row in img_array:
+    ascii = ""
+    for value in row:
+        ascii += gradient[usable_gradient[value]]
+    print(ascii)
 
 
 
