@@ -1,0 +1,35 @@
+import sys
+import numpy as np
+from PIL import Image
+# args = sys.argv
+# input_file, colors, output_width, output_file = sys.argv[1:]
+# for development in colab. Delete in production
+placeholders = ["/content/surprised_pikachu.jpg", "2", "120", "surprised_pikachu.t$
+input_file, colors, output_width, output_file = placeholders
+ncolors = int(colors)
+output_width = int(output_width)
+original_img = Image.open(input_file)
+original_width, original_height = original_img.size
+img_bw_quantized = original_img.convert("L").quantize(colors=ncolors)
+scaling_factor = output_width / original_width
+processed_img = img_bw_quantized.resize((output_width, int(scaling_factor * origin$
+img_array = np.array(processed_img)
+gradient = " .:-=+*#%@"
+with open(output_file, "w") as f:
+    for row in img_array:
+        output = ""
+        for value in row:
+           if value == 0:
+            output += gradient[0]
+           elif value == (ncolors -1):
+            output += gradient[9]
+           else:
+            output += gradient[(value *  int(round(10/(ncolors-1))))]
+        f.write(output + "\n")
+usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, ncolor$
+for row in img_array:
+    ascii = ""
+    for value in row:
+        ascii += gradient[usable_gradient[value]]
+    print(ascii)
+
