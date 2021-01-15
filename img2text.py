@@ -10,8 +10,6 @@ char_aspect = .6
 input_file, colors, output_width, output_file = sys.argv[1:]
 try:
   ncolors = int(colors)
-  if ncolors not in range(2, 10):
-    raise ValueError
   output_width = int(output_width)
   if ncolors not in range(2, 10) or output_width not in range(80,121):
     raise ValueError
