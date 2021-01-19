@@ -8,8 +8,23 @@ char_aspect = .6
 
 # parsing command line inputs
 input_file, colors, output_width, output_file = sys.argv[1:]
-ncolors = int(colors)
-output_width = int(output_width)
+try:
+    ncolors = int(colors)
+    if (ncolors >= 0) or (ncolors <= 10):
+        print("Input has to be between 0 and 10 for the colors")
+        sys.exit()
+except ValueError:
+    print("Input has to be a number")
+    sys.exit()
+
+try:
+    output_width = int(output_width)
+    if (output_width < 80) or (output_width > 240):
+        print("Input has to be between 80 and 240")
+        sys.exit()
+except ValueError:
+    print("Input has to be number")
+    sys.exit()
 
 original_img = Image.open(input_file)
 original_width, original_height = original_img.size
