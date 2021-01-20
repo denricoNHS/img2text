@@ -7,10 +7,15 @@ from PIL import Image
 char_aspect = .6
 
 # parsing command line inputs
+try : 
 input_file, colors, output_width, output_file = sys.argv[1:]
+if  output_width <0: 
 ncolors = int(colors)
 output_width = int(output_width)
-
+else:
+raise ValueError("You input a width less than zero.") 
+except ValueError:
+print ("Enter integers only!")
 original_img = Image.open(input_file)
 original_width, original_height = original_img.size
 
