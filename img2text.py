@@ -7,10 +7,15 @@ from PIL import Image
 char_aspect = .6
 
 # parsing command line inputs
+try : 
 input_file, colors, output_width, output_file = sys.argv[1:]
+if  output_width <0: 
 ncolors = int(colors)
 output_width = int(output_width)
-
+else:
+raise ValueError("You input a width less than zero.") 
+except ValueError:
+print ("Enter integers only!")
 original_img = Image.open(input_file)
 original_width, original_height = original_img.size
 
@@ -22,13 +27,13 @@ processed_img = img_bw_quantized.resize((output_width, int(scaling_factor * orig
 img_array = np.array(processed_img)
 
 gradient = " .:-=+*#%@"
-usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, ncolors)]
-
+gradient_scale= (len(gradient) - 1)/(ncolors-1)
+scaled_array=np.rint(img_array * gradient_scale).astype(int)
 with open(output_file, "w") as f:
-    for row in img_array:
+    for row in scaled_array:
         output = ""
         for value in row:
-            output += gradient[usable_gradient[value]]
+            output += gradient[value]
         f.write(output + "\n")
 
 
