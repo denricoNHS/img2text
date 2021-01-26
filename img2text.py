@@ -1,4 +1,4 @@
-import sys
+import argparse 
 import numpy as np
 from PIL import Image
 
@@ -7,9 +7,14 @@ from PIL import Image
 char_aspect = .6
 
 # parsing command line inputs
-input_file, colors, output_width, output_file = sys.argv[1:]
-ncolors = int(colors)
-output_width = int(output_width)
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('integers', metavar='N', type=int, nargs='+',
+                    help='an integer for the accumulator')
+parser.add_argument('--sum', dest='accumulate', action='store_const',
+                    const=sum, default=max,
+                    help='sum the integers (default: find the max)')
+
+
 
 original_img = Image.open(input_file)
 original_width, original_height = original_img.size
