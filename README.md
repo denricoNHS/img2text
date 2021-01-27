@@ -1,5 +1,7 @@
 # img2text: Make Your Images Low-res!
 
+something something apocalypse
+
 ## Usage:
 `python3 img2text.py INPUT_FILE COLORS OUTPUT_WIDTH OUTPUT_FILE`
 
