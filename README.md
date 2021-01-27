@@ -1,4 +1,10 @@
+
 # img2text: Make Your Images Low-res!
+
+
+# img2text
+A command line script to convert images to text 
+i don't know what am doing
 
 ## Usage:
 `python3 img2text.py INPUT_FILE COLORS OUTPUT_WIDTH OUTPUT_FILE`
