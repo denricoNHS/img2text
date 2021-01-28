@@ -7,15 +7,16 @@ from PIL import Image
 char_aspect = .6
 
 # parsing command line inputs
-parser = argparse.ArgumentParser(description='Take in filename.')
-parser.add_argument('input_file', metavar='', type=string, nargs='1',
-                    help='enter filename')
-parser = argparse.ArgumentParser(description='colors')
-parser.add_argument('colors', metavar='', type=int, help='enter colors')
-parser = argparse.ArgumentParser(description='enter output file')
-parser.add_argument('output_file', metavar='', type=string, help='enter output file')
-
-original_img = Image.open(input_file)
+parser = argparse.ArgumentParser(description='We are converting image to text.')
+parser.add_argument('input_file', type=str, help='path to original image')
+parser.add_argument('colors',type=int, help='number of grayscale valuse to use on output.')
+parser.add_argument('output_width', type=int, help='width desired')
+parser.add_argument('output_file', type=str, help='path to write file')
+args=parser.args
+input_file, colors, output_width, output_file 
+ncolors =args.colors
+output_width= args.output_width
+original_img = Image.open(args.input_file)
 original_width, original_height = original_img.size
 
 img_bw_quantized = original_img.convert("L").quantize(colors=ncolors)
@@ -28,7 +29,7 @@ img_array = np.array(processed_img)
 gradient = " .:-=+*#%@"
 usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, ncolors)]
 
-with open(output_file, "w") as f:
+with open(args.output_file, "w") as f:
     for row in img_array:
         output = ""
         for value in row:
