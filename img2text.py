@@ -7,14 +7,13 @@ from PIL import Image
 char_aspect = .6
 
 # parsing command line inputs
-parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                    help='an integer for the accumulator')
-parser.add_argument('--sum', dest='accumulate', action='store_const',
-                    const=sum, default=max,
-                    help='sum the integers (default: find the max)')
-
-
+parser = argparse.ArgumentParser(description='Take in filename.')
+parser.add_argument('input_file', metavar='', type=string, nargs='1',
+                    help='enter filename')
+parser = argparse.ArgumentParser(description='colors')
+parser.add_argument('colors', metavar='', type=int, help='enter colors')
+parser = argparse.ArgumentParser(description='enter output file')
+parser.add_argument('output_file', metavar='', type=string, help='enter output file')
 
 original_img = Image.open(input_file)
 original_width, original_height = original_img.size
