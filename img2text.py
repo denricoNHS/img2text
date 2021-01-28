@@ -1,54 +1,40 @@
-import sys
+
+import argparse
 import numpy as np
 from PIL import Image
 
-# python img/surprised_pikachu.jpg 10 120 img/surprised_pikachu.txt
+# python3 img2text.py img/surprised_pikachu.jpg 10 120 img/surprised_pikachu.txt
 
 char_aspect = .6
 
 # parsing command line inputs
-input_file, colors, output_width, output_file = sys.argv[1:]
+parser = argparse.ArgumentParser()
 
-try:
-    ncolors = int(colors)
-    if (ncolors <= 0) or (ncolors > len(gradient)):
-        print("Invalid input. The number of colors has to be between 0 and 10")
-        sys.exit()
-except ValueError:
-    print("The number of colors has to be a number")
-    sys.exit()
+parser.add_argument("input_file", help ="path to the original image")
+parser.add_argument("color", help ="an integer number of shades of gray to use for the output image (min: 2, max: 10)", type = int)
+parser.add_argument("output_width", help ="an integer number of pixels to use for the output image", type = int)
+parser.add_argument("output_file", help ="path to the file where the output will be written")
 
-try:
-    output_width = int(output_width)
-    if (output_width < 80) or (output_width > 240):
-        print("Invalid input. The width has to be between 80 and 240")
-        sys.exit()
-except ValueError:
-    print("The width has to be a number")
+args = parser.parse_args()
 
-original_img = Image.open(input_file)
+original_img = Image.open(args.input_file)
 original_width, original_height = original_img.size
 
-img_bw_quantized = original_img.convert("L").quantize(colors=ncolors)
+img_bw_quantized = original_img.convert("L").quantize(args.color)
 
-scaling_factor = output_width / original_width
-processed_img = img_bw_quantized.resize((output_width, int(scaling_factor * original_height * char_aspect)))
+scaling_factor = args.output_width / original_width
+processed_img = img_bw_quantized.resize((args.output_width, int(scaling_factor * original_height * char_aspect)))
 
 img_array = np.array(processed_img)
 
 gradient = " .:-=+*#%@"
+usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, args.color)]
 
-with open(output_file, "w") as f:
+with open(args.output_file, "w") as f:
     for row in img_array:
         output = ""
         for value in row:
-            output += gradient[value]
+            output += gradient[usable_gradient[value]]
         f.write(output + "\n")
-usable_gradient = [int(round(i)) for i in np.linspace(0, len(gradient) - 1, ncolors)]
-for row in img_array:
-    ascii = ""
-    for value in row:
-        ascii += gradient[usable_gradient[value]]
-    print(ascii)
 
 
