@@ -1,7 +1,7 @@
 import argparse
 import numpy as np
 from PIL import Image
-
+import requests
 # usage: python img/surprised_pikachu.jpg 10 120 img/surprised_pikachu.txt
 
 char_aspect = .6
@@ -16,7 +16,7 @@ parser.add_argument('-w', '--web', action ='store_true', help ='use a link from 
 args = parser.parse_args()
 
 if args.web == True:
-	original_img = Image.open(requests.get(args.input_file, stream = True).raw)
+	original_img = Image.open(requests.get(args.input_file, stream=True).raw)
 else:
 	original_img = Image.open(args.input_file)
 original_width, original_height = original_img.size
