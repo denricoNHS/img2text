@@ -12,9 +12,13 @@ parser.add_argument('input_file', help ='the loaction of the image you input')
 parser.add_argument("color", type = int, help ='is an integer between 2 and 10 that represents the amount of shades')
 parser.add_argument("output_width", type = int, help ='is an integer between 80 and 240 that represents the width you wish for the image to be')
 parser.add_argument("output_file", help ='location of the file where the output will be')
+parser.add_argument('-w', '--web', action ='store_true', help ='use a link from a website for the image (default: local file)')
 args = parser.parse_args()
 
-original_img = Image.open(args.input_file)
+if args.web == True:
+	original_img = Image.open(requests.get(args.input_file, stream = True).raw)
+else:
+	original_img = Image.open(args.input_file)
 original_width, original_height = original_img.size
 
 img_bw_quantized = original_img.convert("L").quantize(args.color)
