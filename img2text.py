@@ -23,6 +23,7 @@ original_width, original_height = original_img.size
 
 img_bw_quantized = original_img.convert("L").quantize(args.color)
 scaling_factor = args.output_width/ original_width
+processed_img = img_bw_quantized.resize((args.output_width, int(scaling_factor * original_height * char_aspect)))
 
 img_array = np.array(processed_img)
 
