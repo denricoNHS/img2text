@@ -1,5 +1,8 @@
 # img2text: Make Your Images Low-res!
 
+put something pengiuns
+
+
 ## Usage:
 `python3 img2text.py INPUT_FILE COLORS OUTPUT_WIDTH OUTPUT_FILE`
 
