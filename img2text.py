@@ -7,17 +7,20 @@ from PIL import Image
 char_aspect = .6
 
 # parsing command line inputs
-parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                    help='an integer for the accumulator')
-parser.add_argument('--sum', dest='accumulate', action='store_const',
-                    const=sum, default=max,
-                    help='sum the integers (default: find the max)')
+parser = argparse.ArgumentParser(description='converting pictures to text')
+parser.add_argument("input_file", help="path to the original image")
+parser.add_argument("color", help="an integer number of shades of gray for the output image (min: 2, max: 10)", type=int)
+parser.add_argument("output_width", help="an integer number of pixels for the output image", type=int)
+parser.add_argument("output_file", help="the file where the output will be written")
+parser.add_argument("-w", "--web", action="store_true", help="use link instead of file")
 
 args = parser.parse_args()
-print(args.accumulate(args.integers))
 
-original_img = Image.open(input_file)
+if args.web == True:
+ 	original_img = Image.open(requests.get(args.input_file, stream=True).raw)
+else:
+ 	original_img = Image.open(args.input_file)
+
 original_width, original_height = original_img.size
 
 img_bw_quantized = original_img.convert("L").quantize(args.color)
