@@ -12,6 +12,7 @@ parser.add_argument('input_file', type=str, help='path to original image')
 parser.add_argument('colors',type=int, help='number of grayscale valuse to use on output.')
 parser.add_argument('output_width', type=int, help='width desired')
 parser.add_argument('output_file', type=str, help='path to write file')
+parser.add_argument('-w', dest='accumulate', action='store_const', const=sum, default=max, help='store on website')
 args=parser.args
 input_file, colors, output_width, output_file 
 ncolors =args.colors
